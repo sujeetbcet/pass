@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Forward Pass</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="one">one</string>
+    <string name="two">two</string>
+    <string name="total">Total</string>
+    <string name="offense">Offense</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="facebook_app_id">748732621895679</string>
+</resources>

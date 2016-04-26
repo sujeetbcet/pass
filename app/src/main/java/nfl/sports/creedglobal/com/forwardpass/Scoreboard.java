@@ -26,6 +26,8 @@ import nfl.sports.creedglobal.com.forwardpass.helper.CheckConnectivity;
 
 public class Scoreboard extends ListActivity {
     public ProgressDialog pDialog;
+    String kpos,kname,kfantasypoint="";
+    String defpos,defname,deffantasypoint="";
 
     // URL to get contacts JSON
     private static String url = "http://zinee.in/demo/infox/players.php";
@@ -128,27 +130,42 @@ public class Scoreboard extends ListActivity {
                         String yds = c.getString(TAG_YDS);
                         String intt = c.getString(TAG_INT);
                         String td = c.getString(TAG_TD);
-//                        String icons=Integer.toString(icon[i]);
+                        if (pos.equalsIgnoreCase("K")||pos.equalsIgnoreCase("DEF")){
+                            if (pos.equalsIgnoreCase("K")){
+                                kpos=pos;
+                                kname=name;
+                                kfantasypoint=fantasy;
+                            }
+                            else {
+                                defpos=pos;
+                                defname=name;
+                                deffantasypoint=fantasy;
+                            }
+                        }
+                        else {
+                            //                        String icons=Integer.toString(icon[i]);
 
-                        // Phone node is JSON Object
+                            // Phone node is JSON Object
 //                            JSONObject phone = c.getJSONObject(TAG_PHONE);
 //                            String mobile = phone.getString(TAG_PHONE_MOBILE);
 //                            String home = phone.getString(TAG_PHONE_HOME);
 //                            String office = phone.getString(TAG_PHONE_OFFICE);
 
-                        // tmp hashmap for single contact
-                        HashMap<String, String> contact = new HashMap<String, String>();
+                            // tmp hashmap for single contact
+                            HashMap<String, String> contact = new HashMap<String, String>();
 
-                        // adding each child node to HashMap key => value
-                        contact.put(TAG_ID, id);
-                        contact.put(TAG_POS, pos);
-                        contact.put(TAG_NAME, name);
-                        contact.put(TAG_ACTUAL_TEAM, actual_team);
-                        contact.put(TAG_FANTASY_POINT, fantasy);
-                        contact.put("icons", Integer.toString(icon[i]));
+                            // adding each child node to HashMap key => value
+                            contact.put(TAG_ID, id);
+                            contact.put(TAG_POS, pos);
+                            contact.put(TAG_NAME, name);
+                            contact.put(TAG_ACTUAL_TEAM, actual_team);
+                            contact.put(TAG_FANTASY_POINT, fantasy);
+                            contact.put("icons", Integer.toString(icon[i]));
 
-                        // adding contact to contact list
-                        contactList.add(contact);
+                            // adding contact to contact list
+                            contactList.add(contact);
+                        }
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -3,6 +3,7 @@ package nfl.sports.creedglobal.com.forwardpass;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +11,9 @@ import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +21,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import nfl.sports.creedglobal.com.forwardpass.helper.CheckConnectivity;
 
 public class Team extends ListActivity {
     public ProgressDialog pDialog;
@@ -37,12 +42,21 @@ public class Team extends ListActivity {
 
     // Hashmap for ListView
     ArrayList<HashMap<String, String>> contactList;
+    TextView textView;
+    Spinner amountsnr;
+    Spinner charity;
+    String teamname="";
+    TextView teamnameedit;
+    float totalpoint=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team);
-        TextView teamTab=(TextView)findViewById(R.id.teamstxt);
+        TextView teamTab = (TextView) findViewById(R.id.teamstxt);
+        amountsnr = (Spinner) findViewById(R.id.amtspnr);
+        charity = (Spinner) findViewById(R.id.charityspnr);
+        teamnameedit=(TextView)findViewById(R.id.yourteam);
         teamTab.setBackgroundResource(R.drawable.bot_border);
         teamTab.setAlpha((float) 0.7);
         // Calling async task to get json
@@ -51,9 +65,10 @@ public class Team extends ListActivity {
 
         ListView lv = getListView();
     }
+
     /**
      * Async task class to get json by making HTTP call
-     * */
+     */
     private class GetContacts extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -91,6 +106,10 @@ public class Team extends ListActivity {
                         String name = c.getString(TAG_NAME);
                         String forp = c.getString(TAG_FOR);
                         String total = c.getString(TAG_TOTAL);
+                        if (i==0){
+                            totalpoint= Float.parseFloat(c.getString(TAG_TOTAL));
+                            teamname=c.getString(TAG_NAME);
+                        }
 
 
                         // Phone node is JSON Object
@@ -123,26 +142,61 @@ public class Team extends ListActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+            teamnameedit.setText("Your team is : "+teamname);
             // Dismiss the progress dialog
             if (pDialog.isShowing())
                 pDialog.dismiss();
             /**
              * Updating parsed JSON data into ListView
              * */
-            ListAdapter adapter = new SimpleAdapter(getApplicationContext(), contactList,R.layout.team_info, new String[] {
-                    TAG_ID, TAG_NAME, TAG_FOR,TAG_TOTAL }, new int[] {
+            ListAdapter adapter = new SimpleAdapter(getApplicationContext(), contactList, R.layout.team_info, new String[]{
+                    TAG_ID, TAG_NAME, TAG_FOR, TAG_TOTAL}, new int[]{
                     R.id.rank,
-                    R.id.team, R.id.forp,R.id.total });
+                    R.id.team, R.id.forp, R.id.total});
+
 
             setListAdapter(adapter);
         }
     }
-    public void gotoScoreboard(View view){
-        startActivity(new Intent(getApplicationContext(),Scoreboard.class));
+
+    public void gotoScoreboard(View view) {
+
+        startActivity(new Intent(getApplicationContext(), Scoreboard.class));
         finish();
+
+
     }
-    public void gotoTeam(View view){
+
+    public void gotoTeam(View view) {
 //        startActivity(new Intent(getApplicationContext(),Team.class));
 //        finish();
+    }
+    public void payButton(View view) {
+        payment("default_username", "default_teamid");
+    }
+    public void payment(String username, String teamid) {
+
+        String amt=amountsnr.getSelectedItem().toString();
+        Float topayamount=totalpoint*Float.parseFloat(amt);
+
+        String amount = amountsnr.getSelectedItem().toString();
+        String charityname = charity.getSelectedItem().toString();
+        if (charityname.equals("Select")) {
+            Toast.makeText(this, "Please select a Charity", Toast.LENGTH_SHORT).show();
+        } else if (charityname.equals("Savethechildren")) {
+            String url = "http://savethechildren.org/";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        } else if (charityname.equals("Catholic")) {
+            String url = "https://catholiccharitiesusa.org/";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        } else {
+            Intent intent = new Intent(this, Pay.class);
+            intent.putExtra("amount", topayamount.toString());
+            startActivity(intent);
+        }
     }
 }

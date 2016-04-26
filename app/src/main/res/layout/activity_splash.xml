@@ -13,4 +13,44 @@
         android:src="@drawable/nfl_logo"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="please check Internet connection..."
+        android:id="@+id/nointmsg"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:textStyle="italic" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/refreshbtn"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/nointmsg"
+        android:layout_centerHorizontal="true"
+        android:onClick="refresh">
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_popup_sync"
+            android:layout_marginTop="10dp"
+            android:onClick="refresh" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="refresh"
+            android:id="@+id/textView"
+            android:layout_below="@+id/refreshbtn"
+            android:textStyle="bold|italic"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
 </RelativeLayout>

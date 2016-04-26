@@ -22,6 +22,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import nfl.sports.creedglobal.com.forwardpass.helper.CheckConnectivity;
+
 public class Scoreboard extends ListActivity {
     public ProgressDialog pDialog;
 
@@ -69,7 +71,7 @@ public class Scoreboard extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoreboard);
-        TextView scoreTab = (TextView) findViewById(R.id.scoretxt);
+        TextView scoreTab = (TextView)findViewById(R.id.scoretxt);
         scoreTab.setBackgroundResource(R.drawable.bot_border);
         scoreTab.setAlpha((float) 0.7);
         // Calling async task to get json
@@ -189,7 +191,10 @@ public class Scoreboard extends ListActivity {
     }
 
     public void gotoTeam(View view) {
-        startActivity(new Intent(getApplicationContext(), Team.class));
-        finish();
+
+            startActivity(new Intent(getApplicationContext(), Team.class));
+            finish();
+
+
     }
 }

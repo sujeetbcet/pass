@@ -68,6 +68,7 @@ public class Scoreboard extends ListActivity {
 
     // Hashmap for ListView
     ArrayList<HashMap<String, String>> contactList;
+    ArrayList<HashMap<String,String>> rowlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,8 @@ public class Scoreboard extends ListActivity {
         contactList = new ArrayList<HashMap<String, String>>();
 
         ListView lv = getListView();
+        ListView row=getListView();
+
     }
 
     /**
@@ -199,6 +202,9 @@ public class Scoreboard extends ListActivity {
                             R.id.fantasytxt});
 
             setListAdapter(adapter);
+
+
+
         }
     }
 
@@ -206,12 +212,8 @@ public class Scoreboard extends ListActivity {
 //        startActivity(new Intent(getApplicationContext(),Scoreboard.class));
 //        finish();
     }
-
     public void gotoTeam(View view) {
-
             startActivity(new Intent(getApplicationContext(), Team.class));
             finish();
-
-
     }
 }

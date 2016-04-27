@@ -4,8 +4,7 @@
     android:orientation="horizontal"
     android:showDividers="end"
     android:divider="@color/colorAccent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -66,13 +65,14 @@
         android:layout_below="@+id/kheader"
         android:layout_width="match_parent"
         android:id="@+id/klist"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
 
         <TextView
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:text="POS"
-            android:id="@+id/dpostxt"
+            android:id="@+id/kpostxt"
             android:textColor="@color/textdefault"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -89,7 +89,7 @@
             <ImageView
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:id="@+id/dteamicon"
+                android:id="@+id/kteamicon"
                 android:layout_weight="1"
                 android:src="@drawable/team1" />
 
@@ -97,7 +97,7 @@
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:text="Offense"
-                android:id="@+id/doffensetxt"
+                android:id="@+id/koffensetxt"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/postxt"
                 android:layout_toEndOf="@+id/postxt"
@@ -111,7 +111,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:text="Fantasy Points"
-            android:id="@+id/dfantasytxt"
+            android:id="@+id/kfantasytxt"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/offensetxt"
             android:layout_toEndOf="@+id/offensetxt"
@@ -182,7 +182,9 @@
         android:orientation="horizontal"
         android:layout_below="@+id/dheader"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:id="@+id/linearLayout2">
 
         <TextView
             android:layout_width="0dip"
@@ -207,7 +209,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/dteamicon"
                 android:layout_weight="1"
-                android:src="@drawable/team1" />
+                android:src="@drawable/team12" />
 
             <TextView
                 android:layout_width="0dip"
@@ -238,5 +240,31 @@
             android:background="@drawable/box_border" />
     </LinearLayout>
 
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout2">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Points"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="point"
+            android:id="@+id/totalpoint"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:paddingRight="15dp" />
+
+
+    </RelativeLayout>
 
 </RelativeLayout>

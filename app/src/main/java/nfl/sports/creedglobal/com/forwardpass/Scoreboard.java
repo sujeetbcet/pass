@@ -28,6 +28,8 @@ public class Scoreboard extends ListActivity {
     public ProgressDialog pDialog;
     String kpos,kname,kfantasypoint="";
     String defpos,defname,deffantasypoint="";
+    TextView kpost,koffenset,kfantasyt,dpost,doffenset,dfantasyt,totalpointt;
+    int totalpoint=0;
 
     // URL to get contacts JSON
     private static String url = "http://zinee.in/demo/infox/players.php";
@@ -76,6 +78,13 @@ public class Scoreboard extends ListActivity {
         setContentView(R.layout.activity_scoreboard);
         TextView scoreTab = (TextView)findViewById(R.id.scoretxt);
         scoreTab.setBackgroundResource(R.drawable.bot_border);
+        kpost=(TextView)findViewById(R.id.kpostxt);
+        koffenset=(TextView)findViewById(R.id.koffensetxt);
+        kfantasyt=(TextView)findViewById(R.id.kfantasytxt);
+        dpost=(TextView)findViewById(R.id.dpostxt);
+        doffenset=(TextView)findViewById(R.id.doffensetxt);
+        dfantasyt=(TextView)findViewById(R.id.dfantasytxt);
+        totalpointt=(TextView)findViewById(R.id.totalpoint);
         scoreTab.setAlpha((float) 0.7);
         // Calling async task to get json
         new GetContacts().execute();
@@ -133,11 +142,13 @@ public class Scoreboard extends ListActivity {
                         String yds = c.getString(TAG_YDS);
                         String intt = c.getString(TAG_INT);
                         String td = c.getString(TAG_TD);
+                        totalpoint=totalpoint+Integer.parseInt(fantasy);
                         if (pos.equalsIgnoreCase("K")||pos.equalsIgnoreCase("DEF")){
                             if (pos.equalsIgnoreCase("K")){
                                 kpos=pos;
                                 kname=name;
                                 kfantasypoint=fantasy;
+
                             }
                             else {
                                 defpos=pos;
@@ -203,6 +214,14 @@ public class Scoreboard extends ListActivity {
 
             setListAdapter(adapter);
 
+
+            kpost.setText(kpos);
+            koffenset.setText(kname);
+            kfantasyt.setText(kfantasypoint);
+            dpost.setText(defpos);
+            doffenset.setText(defname);
+            dfantasyt.setText(deffantasypoint);
+            totalpointt.setText(String.valueOf(totalpoint));
 
 
         }

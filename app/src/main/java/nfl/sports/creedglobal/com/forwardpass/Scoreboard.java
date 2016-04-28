@@ -145,15 +145,18 @@ public class Scoreboard extends ListActivity {
                         totalpoint=totalpoint+Integer.parseInt(fantasy);
                         if (pos.equalsIgnoreCase("K")||pos.equalsIgnoreCase("DEF")){
                             if (pos.equalsIgnoreCase("K")){
+
                                 kpos=pos;
                                 kname=name;
                                 kfantasypoint=fantasy;
+                                String kdata[]={pos,name,fantasy};
 
                             }
                             else {
                                 defpos=pos;
                                 defname=name;
                                 deffantasypoint=fantasy;
+                                String ddata[]={pos,name,fantasy};
                             }
                         }
                         else {
@@ -179,7 +182,6 @@ public class Scoreboard extends ListActivity {
                             // adding contact to contact list
                             contactList.add(contact);
                         }
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -213,6 +215,7 @@ public class Scoreboard extends ListActivity {
                             R.id.fantasytxt});
 
             setListAdapter(adapter);
+
 
 
             kpost.setText(kpos);

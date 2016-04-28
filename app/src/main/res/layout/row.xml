@@ -244,7 +244,9 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout2">
+        android:layout_below="@+id/linearLayout2"
+        android:paddingTop="10dp"
+        android:layout_marginBottom="10dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -252,7 +254,9 @@
         android:text="Total Points"
         android:gravity="center_horizontal"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="15sp"
+        android:textColor="@android:color/black" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -262,7 +266,9 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:paddingRight="15dp" />
+            android:paddingRight="15dp"
+            android:textSize="15sp"
+            android:textColor="@android:color/black" />
 
 
     </RelativeLayout>

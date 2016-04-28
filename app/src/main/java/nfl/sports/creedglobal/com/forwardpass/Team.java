@@ -108,7 +108,7 @@ public class Team extends ListActivity {
                         String total = c.getString(TAG_TOTAL);
                         if (i==0){
                             totalpoint= Float.parseFloat(c.getString(TAG_TOTAL));
-                            teamname=c.getString(TAG_NAME);
+                            teamname=c.getString(TAG_NAME)+" : "+c.getString(TAG_TOTAL);
                         }
 
 
@@ -142,7 +142,7 @@ public class Team extends ListActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            teamnameedit.setText("Your team is : "+teamname);
+            teamnameedit.setText(""+teamname);
             // Dismiss the progress dialog
             if (pDialog.isShowing())
                 pDialog.dismiss();

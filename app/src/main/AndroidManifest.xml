@@ -11,17 +11,22 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Splash">
+        android:theme="@style/AppTheme"
+     >
+        <activity android:name=".Splash"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginScreen" />
-        <activity android:name=".Scoreboard" />
-        <activity android:name=".Team" />
+        <activity android:name=".LoginScreen"
+          />
+        <activity android:name=".Scoreboard"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".Team"
+           />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
@@ -43,7 +48,7 @@
             android:authorities="com.facebook.app.FacebookContentProvider748732621895679"
             android:exported="true" />
 
-        <activity android:name=".Pay"></activity>
+        <activity android:name=".Pay" />
     </application>
 
 </manifest>

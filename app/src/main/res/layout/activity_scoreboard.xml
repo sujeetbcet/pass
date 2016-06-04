@@ -9,20 +9,38 @@
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/toolbar"
-        android:id="@+id/scoreheader"
-        android:layout_alignParentTop="true"
+        android:id="@+id/action_bar"
+        layout="@layout/actionbar"
+
         android:layout_centerHorizontal="true" />
 
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/action_bar"
+        layout="@layout/toolbar"
+        android:id="@+id/scoreheader"
+        android:layout_centerHorizontal="true" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="It Ertz When Eifert"
+        android:id="@+id/txt_teamname"
+        android:textStyle="bold"
+        android:layout_below="@+id/scoreheader"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="3dp"
+        android:textColor="@color/redtext"
+        android:paddingLeft="15dp" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:id="@+id/header"
-        android:layout_below="@+id/scoreheader"
+        android:layout_below="@+id/txt_teamname"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="10dp">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -105,8 +123,6 @@
 
         </LinearLayout>
     </ScrollView>
-
-
 
 
 </RelativeLayout>

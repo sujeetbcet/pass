@@ -8,12 +8,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,12 +57,12 @@ public class Team extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team);
-        TextView teamTab = (TextView) findViewById(R.id.teamstxt);
+        Button teamTab = (Button) findViewById(R.id.teamstxt);
         amountsnr = (Spinner) findViewById(R.id.amtspnr);
         charity = (Spinner) findViewById(R.id.charityspnr);
         teamnameedit=(TextView)findViewById(R.id.yourteam);
         teamTab.setBackgroundResource(R.drawable.bot_border);
-        teamTab.setAlpha((float) 0.7);
+//        teamTab.setAlpha((float) 0.7);
         // Calling async task to get json
         new GetContacts().execute();
         contactList = new ArrayList<HashMap<String, String>>();
@@ -124,8 +128,8 @@ public class Team extends ListActivity {
                         // adding each child node to HashMap key => value
                         contact.put(TAG_ID, rank);
                         contact.put(TAG_NAME, name);
-                        contact.put(TAG_FOR, forp);
-                        contact.put(TAG_TOTAL, total);
+                        contact.put(TAG_FOR, total);
+//                        contact.put(TAG_TOTAL, forp);
 
                         // adding contact to contact list
                         contactList.add(contact);
@@ -150,9 +154,9 @@ public class Team extends ListActivity {
              * Updating parsed JSON data into ListView
              * */
             ListAdapter adapter = new SimpleAdapter(getApplicationContext(), contactList, R.layout.team_info, new String[]{
-                    TAG_ID, TAG_NAME, TAG_FOR, TAG_TOTAL}, new int[]{
+                    TAG_ID, TAG_NAME, TAG_FOR}, new int[]{
                     R.id.rank,
-                    R.id.team, R.id.forp, R.id.total});
+                    R.id.team, R.id.forp});
 
 
             setListAdapter(adapter);
@@ -161,10 +165,13 @@ public class Team extends ListActivity {
 
     public void gotoScoreboard(View view) {
 
-        startActivity(new Intent(getApplicationContext(), Scoreboard.class));
-        finish();
-
-
+        if (new CheckConnectivity(this).isInternet()){
+            startActivity(new Intent(getApplicationContext(), Scoreboard.class));
+            finish();
+        }
+        else{
+            Toast.makeText(this,"Internet not available !",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void gotoTeam(View view) {
@@ -183,13 +190,8 @@ public class Team extends ListActivity {
         String charityname = charity.getSelectedItem().toString();
         if (charityname.equals("Select")) {
             Toast.makeText(this, "Please select a Charity", Toast.LENGTH_SHORT).show();
-        } else if (charityname.equals("Savethechildren")) {
-            String url = "http://savethechildren.org/";
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(url));
-            startActivity(i);
-        } else if (charityname.equals("Catholic")) {
-            String url = "https://catholiccharitiesusa.org/";
+        } else if (charityname.equals("OTHERS")) {
+            String url = "about:blank";
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);
@@ -197,6 +199,20 @@ public class Team extends ListActivity {
             Intent intent = new Intent(this, Pay.class);
             intent.putExtra("amount", topayamount.toString());
             startActivity(intent);
+        }
+    }
+    public void logout(View view){
+        Log.i("my_info : ", "logout>Payment");
+        if (AccessToken.getCurrentAccessToken()!=null) {
+            Log.i("my_info : ", "logout>Payment" + AccessToken.getCurrentAccessToken());
+            LoginManager.getInstance().logOut();
+            Log.i("my_info : ", String.valueOf("after  logout Access Token is :" + AccessToken.getCurrentAccessToken() == null));
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
+        }
+        else {
+            Log.i("my_info","user cannot be able to logout/ already logout");
+            Toast.makeText(getApplicationContext(),"Already logged out",Toast.LENGTH_SHORT).show();
         }
     }
 }

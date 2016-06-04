@@ -1,85 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
-    android:showDividers="end"
+    android:layout_height="wrap_content"
     android:divider="@color/colorAccent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal"
+    android:showDividers="end">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:id="@+id/kheader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/scoreheader"
-        android:layout_marginTop="10dp">
+        android:background="@drawable/headerborder"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:minWidth="20dp"
             android:text="POS"
             android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:minWidth="20dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_weight="1" />
+            android:textSize="15sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:minWidth="20dp"
             android:text="     "
             android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:minWidth="20dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_weight="1" />
+            android:textSize="15sp" />
 
 
         <TextView
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="Kicker"
-            android:layout_weight="6"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/rank"
             android:layout_toEndOf="@+id/rank"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
+            android:layout_toRightOf="@+id/rank"
+            android:layout_weight="6"
+            android:gravity="center_vertical"
             android:paddingLeft="8dp"
-            android:gravity="center_vertical" />
+            android:text="Kicker"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="Fantasy point"
-            android:layout_weight="3"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/total"
             android:layout_toStartOf="@+id/total"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
+            android:layout_weight="3"
+            android:gravity="center_vertical|right"
             android:paddingRight="10dp"
-            android:gravity="center_vertical|right" />
+            android:text="Fantasy point"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
 
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_below="@+id/kheader"
-        android:layout_width="match_parent"
         android:id="@+id/klist"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white">
+        android:layout_below="@+id/kheader"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/kpostxt"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="POS"
-            android:id="@+id/kpostxt"
-            android:textColor="@color/textdefault"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_weight="1"
+            android:background="@drawable/box_border"
             android:gravity="center_horizontal"
-            android:background="@drawable/box_border" />
+            android:text="POS"
+            android:textColor="@color/textdefault" />
+
         <LinearLayout
             android:layout_width="0dip"
             android:layout_height="match_parent"
@@ -87,117 +91,160 @@
             android:background="@drawable/box_border">
 
             <ImageView
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
                 android:id="@+id/kteamicon"
-                android:layout_weight="1"
-                android:src="@drawable/team1" />
-
-            <TextView
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:text="Offense"
-                android:id="@+id/koffensetxt"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/postxt"
-                android:layout_toEndOf="@+id/postxt"
+                android:layout_weight="1"
+                android:src="@drawable/den" />
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/koffensetxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/postxt"
+                    android:layout_toRightOf="@+id/postxt"
+                    android:text="Offense"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/kopostxt"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#70000000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="POS"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  -  "
+                        android:textColor="#70000000"
+                        android:textSize="10dp" />
+
+                    z<TextView
+                        android:id="@+id/koteamtxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#70000000"
+                        android:paddingLeft="5dp"
+                        android:text="team"
+                        android:textSize="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--kjhdf-->
         </LinearLayout>
 
 
         <TextView
+            android:id="@+id/kfantasytxt"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="Fantasy Points"
-            android:id="@+id/kfantasytxt"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/offensetxt"
             android:layout_toEndOf="@+id/offensetxt"
+            android:layout_toRightOf="@+id/offensetxt"
             android:layout_weight="1"
-            android:textColor="@color/textdefault"
+            android:background="@drawable/box_border"
             android:gravity="right"
             android:paddingRight="15dp"
-            android:background="@drawable/box_border" />
+            android:text="Fantasy Points"
+            android:textColor="@color/textdefault" />
     </LinearLayout>
 
     <!--layout for defence-->
 
     <LinearLayout
-        android:orientation="horizontal"
         android:id="@+id/dheader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/klist"
-        android:layout_marginTop="10dp">
+        android:background="@drawable/headerborder"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:minWidth="20dp"
             android:text="POS"
             android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:minWidth="20dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_weight="1" />
+            android:textSize="15sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:minWidth="20dp"
             android:text="     "
             android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:minWidth="20dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_weight="1" />
+            android:textSize="15sp" />
 
 
         <TextView
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="Defence Team"
-            android:layout_weight="6"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/rank"
             android:layout_toEndOf="@+id/rank"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
+            android:layout_toRightOf="@+id/rank"
+            android:layout_weight="6"
+            android:gravity="center_vertical"
             android:paddingLeft="8dp"
-            android:gravity="center_vertical" />
+            android:text="Defence Team"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="Fantasy point"
-            android:layout_weight="3"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/total"
             android:layout_toStartOf="@+id/total"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
+            android:layout_weight="3"
+            android:gravity="center_vertical|right"
             android:paddingRight="10dp"
-            android:gravity="center_vertical|right" />
+            android:text="Fantasy point"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
 
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_below="@+id/dheader"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/dheader"
         android:background="@android:color/white"
-        android:id="@+id/linearLayout2">
+        android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/dpostxt"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="POS"
-            android:id="@+id/dpostxt"
-            android:textColor="@color/textdefault"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_weight="1"
+            android:background="@drawable/box_border"
             android:gravity="center_horizontal"
-            android:background="@drawable/box_border" />
+            android:text="POS"
+            android:textColor="@color/textdefault" />
+
         <LinearLayout
             android:layout_width="0dip"
             android:layout_height="match_parent"
@@ -205,70 +252,121 @@
             android:background="@drawable/box_border">
 
             <ImageView
+                android:id="@+id/dteamicon"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:id="@+id/dteamicon"
                 android:layout_weight="1"
                 android:src="@drawable/team12" />
 
-            <TextView
+            <!--<TextView-->
+            <!--android:id="@+id/doffensetxt"-->
+            <!--android:layout_width="0dip"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_toEndOf="@+id/postxt"-->
+            <!--android:layout_toRightOf="@+id/postxt"-->
+            <!--android:layout_weight="3"-->
+            <!--android:text="Offense"-->
+            <!--android:textColor="@color/colorPrimaryDark"-->
+            <!--android:textStyle="bold" />-->
+            <LinearLayout
                 android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:text="Offense"
-                android:id="@+id/doffensetxt"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/postxt"
-                android:layout_toEndOf="@+id/postxt"
+                android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/doffensetxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/postxt"
+                    android:layout_toRightOf="@+id/postxt"
+                    android:text="Offense"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/dopostxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#70000000"
+                        android:text="POS"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  -  "
+                        android:textColor="#70000000"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/doteamtxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#70000000"
+                        android:paddingLeft="5dp"
+                        android:text="team"
+                        android:textSize="10dp" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
 
         <TextView
+            android:id="@+id/dfantasytxt"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="Fantasy Points"
-            android:id="@+id/dfantasytxt"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/offensetxt"
             android:layout_toEndOf="@+id/offensetxt"
+            android:layout_toRightOf="@+id/offensetxt"
             android:layout_weight="1"
-            android:textColor="@color/textdefault"
+            android:background="@drawable/box_border"
             android:gravity="right"
             android:paddingRight="15dp"
-            android:background="@drawable/box_border" />
+            android:text="Fantasy Points"
+            android:textColor="@color/textdefault" />
     </LinearLayout>
 
     <RelativeLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout2"
-        android:paddingTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/headerborder"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total Points"
-        android:gravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="15sp"
-        android:textColor="@android:color/black" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="point"
-            android:id="@+id/totalpoint"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:text="Total Points"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/totalpoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:gravity="right"
             android:paddingRight="15dp"
-            android:textSize="15sp"
-            android:textColor="@android:color/black" />
+            android:text="point"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
 
 
     </RelativeLayout>

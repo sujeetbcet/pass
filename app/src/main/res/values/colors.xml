@@ -7,4 +7,8 @@
     <color name="textColorPrimary">#66000000</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
+    <color name="background">#d0deeb</color>
+    <color name="back1">#e8e8e8</color>
+    <color name="redtext">#fc3176</color>
+
 </resources>

@@ -82,7 +82,6 @@ public class ServiceHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return response;
 
     }

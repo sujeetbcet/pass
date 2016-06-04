@@ -8,7 +8,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:text="rank"
 
                 android:id="@+id/rank"
@@ -22,9 +22,11 @@
 
             <TextView
                 android:layout_width="0dip"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:text="team"
+                android:drawableLeft="@drawable/default_team_logo"
                 android:layout_weight="6"
+                android:drawablePadding="8dp"
 
                 android:id="@+id/team"
                 android:layout_alignParentTop="true"
@@ -39,7 +41,7 @@
 
             <TextView
                 android:layout_width="0dip"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:text="for point"
                 android:layout_weight="3"
 
@@ -52,23 +54,6 @@
                 android:textColor="@color/textdefault"
                 android:background="@drawable/box_border"
                 android:minHeight="20dp" />
-
-            <TextView
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:text="Total point"
-                android:id="@+id/total"
-
-                android:layout_weight="3"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:textSize="15sp"
-                android:gravity="center_horizontal"
-                android:textColor="@color/textdefault"
-                android:background="@drawable/box_border"
-                android:minHeight="20dp" />
-
 
 
 </LinearLayout>

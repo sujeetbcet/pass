@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:layout_height="fill_parent">
 
     <!-- Main ListView
          Always give id value as list(@android:id/list)
@@ -10,18 +9,24 @@
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/action_bar"
+        layout="@layout/actionbar"
+        android:layout_centerHorizontal="true" />
 
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/action_bar"
         layout="@layout/toolbar"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/include" />
+        android:id="@+id/scoreheader"
+        android:layout_centerHorizontal="true" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/include"
+        android:layout_below="@+id/scoreheader"
         android:id="@+id/header"
         android:layout_marginTop="10dp"
         android:layout_alignParentLeft="true"
@@ -54,7 +59,7 @@
         <TextView
             android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:text="For"
+            android:text="Points"
             android:layout_weight="3"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/total"
@@ -64,18 +69,6 @@
             android:gravity="center_horizontal"
             android:layout_marginBottom="5dp" />
 
-        <TextView
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:text="Total"
-            android:layout_weight="3"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="5dp" />
     </LinearLayout>
 
     <ScrollView
@@ -97,7 +90,7 @@
                     android:scrollbars="none"
                     android:id="@android:id/list"
                     android:layout_width="fill_parent"
-                    android:layout_height="360dp"
+                    android:layout_height="400dp"
                     android:layout_below="@+id/header"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"/>
@@ -114,7 +107,7 @@
                         android:id="@+id/yourteam"
                         android:text=" "
                         android:layout_marginLeft="10dp"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/redtext"
                         android:paddingBottom="5dp"
                         android:textStyle="bold" />
                     <LinearLayout
@@ -126,13 +119,13 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp">
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dip"
                             android:layout_gravity="left"
                             android:layout_height="match_parent"
                             android:text="Select Charity"
-                            android:layout_weight="1" />
+                            android:layout_weight="2" />
                         <Spinner
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dip"
                             android:layout_height="match_parent"
                             android:entries="@array/charity"
                             android:id="@+id/charityspnr"
@@ -149,13 +142,13 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginLeft="10dp">
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dip"
                             android:layout_height="match_parent"
-                            android:text="Amount"
+                            android:text="Amount per point"
                             android:layout_gravity="left"
-                            android:layout_weight="1" />
+                            android:layout_weight="2" />
                         <Spinner
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dip"
                             android:layout_height="match_parent"
                             android:entries="@array/amount"
                             android:id="@+id/amtspnr"

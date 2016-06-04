@@ -9,83 +9,68 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Pay extends AppCompatActivity {
     TextView amounttxt;
     EditText cardtxt,cvv;
+    Spinner selectedBank;
+    int cardlength=16;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
+
         String amount = getIntent().getStringExtra("amount");
+        selectedBank = (Spinner)findViewById(R.id.selectbank);
         amounttxt = (TextView)findViewById(R.id.amounttxt);
+        Button btn_paynow = (Button) findViewById(R.id.paynowbtn);
+        cvv = (EditText) findViewById(R.id.cvv);
+
         amounttxt.setText(amount + " $");
         cardtxt= (EditText) findViewById(R.id.cardedt);
-        cardtxt.addTextChangedListener(new TextWatcher() {
+
+        selectedBank.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position==1){
+                    cardlength=15;
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!(cardtxt.getText().toString().length()==16)){
-                    cardtxt.setError("Enter 16-digit valid card number");
                 }
+                else {
+                    cardlength=16;
 
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(Pay.this,"please select a card",Toast.LENGTH_SHORT).show();
             }
         });
-        cvv=(EditText)findViewById(R.id.cvv);
-        cvv.addTextChangedListener(new TextWatcher() {
+        btn_paynow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!(cvv.getText().toString().length() == 3)) {
-                    cvv.setError("Enter valid cvv ");
+            public void onClick(View v) {
+                if (validate()){
+                    Dialog dialog = new Dialog(Pay.this);
+                    dialog.setCancelable(false);
+                    dialog.setTitle("thanks for Donation...");
+                    dialog.show();
+                    startActivity(new Intent(getApplicationContext(), Team.class));
+                    finish();
+                    dialog.dismiss();
                 }
             }
         });
-    }
-    public void logout(View view){
-        Log.i("my_info : ", "logout>Payment");
-//        if (AccessToken.getCurrentAccessToken()!=null){
-//            Log.i("my_info : ", "logout>Payment"+AccessToken.getCurrentAccessToken());
-//            LoginManager.getInstance().logOut();
-//            Log.i("my_info : ", String.valueOf("after  logout Access Token is :"+ AccessToken.getCurrentAccessToken()==null));
-//        }
-        if (cvv.getText().toString().length()==3&&cardtxt.getText().toString().length()==16){
-            Dialog dialog = new Dialog(this);
-            dialog.setCancelable(false);
-            dialog.setTitle("thanks for Donation...");
-            dialog.show();
-            startActivity(new Intent(this, Team.class));
-            finish();
-            dialog.dismiss();
-        }
-        else{
-            cardtxt.setError("Enter valid card number");
-            cvv.setError("Enter valid cvv");
-
-        }
 
     }
+
 
     @Override
     public void onBackPressed() {
@@ -95,7 +80,20 @@ public class Pay extends AppCompatActivity {
         finish();
     }
 
-    public boolean isValid(String str){
-        return Patterns.PHONE.matcher(str).matches();
+    public boolean validate(){
+        boolean status=true;
+        if (selectedBank.getSelectedItem().toString().equals("select card")){
+            Toast.makeText(this,"please select a card",Toast.LENGTH_SHORT).show();
+            status=false;
+        }
+        else if (cardtxt.getText().toString().length()!=cardlength){
+            cardtxt.setError("please enter "+cardlength+"-digit card number");
+            status=false;
+        }
+        else if (cvv.getText().toString().length()!=3){
+            cvv.setError("please enter valid CVV number");
+            status=false;
+        }
+        return status;
     }
 }

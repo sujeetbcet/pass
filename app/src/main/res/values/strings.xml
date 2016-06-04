@@ -11,16 +11,27 @@
     <string name="action_settings">Settings</string>
     <string name="facebook_app_id">748732621895679</string>
 
+    <string-array name="selectbank">
+        <item>select card</item>
+        <item>American Express</item>
+        <item>MasterCard</item>
+        <item>Visa</item>
+    </string-array>
 
     <string name="select_prompt">Select the charity</string>
     <string name="select_prompt1">Select the amount</string>
 
     <string-array name="charity">
         <item>Select</item>
-        <item>Savethechildren</item>
-        <item>Catholic</item>
-        <item>clean my city</item>
-        <item>art of giving</item>
+        <item>City Year</item>
+        <item>Colel Chabad</item>
+        <item>Friends of the IDF</item>
+        <item>Habitat for Humanity</item>
+        <item>Magen David Adom</item>
+        <item>March of Dimes</item>
+        <item>Save the Children</item>
+        <item>Sierra Club</item>
+        <item>OTHERS</item>
     </string-array>
 
     <string-array name="amount">
@@ -29,8 +40,8 @@
         <item>.50</item>
         <item>1</item>
     </string-array>
-    <string name="prompt2">MM</string>
 
+    <string name="prompt2">MM</string>
 
     <string-array name="months">
         <item>01</item>
